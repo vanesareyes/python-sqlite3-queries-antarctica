@@ -1,4 +1,3 @@
-########### arreglar conteo de rows para arreglar condicional cuando no encuentra posicion de gps
 import csv
 import sqlite3
 from datetime import datetime
@@ -44,7 +43,7 @@ with open('D:/Usuario/Escritorio/PamGuard/query_output.csv', 'w') as f:
 	
 
 
-
+###################################################################################
 # gpx_file = open('E:/Antartida 2020/Tracks Garmin (inclompleto)/Track_ 020-01-07 200732.gpx', 'r')
 # gpx = gpxpy.parse(gpx_file)
 
@@ -53,10 +52,3 @@ with open('D:/Usuario/Escritorio/PamGuard/query_output.csv', 'w') as f:
 #         for point in segment.points:
 #             print('Point at ({0},{1},{2}) -> {3}'.format(point.latitude, point.longitude, point.elevation, point.time))
 ###################################################################################
-
-# for row in data:
-	# extraer fecha de cada row y pasarlo a datestring
-	# extraer AAAA:DD:MM HH:MM
-	# hacer query con LIKE extreayendo Id de tabla gpsData comparando GpsDate y meter en una lista de tuples y pasar a datestring
-	# comparar usando func neareast
-	# imprimir para debug row original: Sighting_No, Sighting_Time_GMT__, Visual_Species, Sighting_effort + GpsIndex, GpsTime, Latitude, longitude, dif temporal
