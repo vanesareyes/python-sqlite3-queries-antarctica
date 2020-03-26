@@ -1,21 +1,18 @@
 import csv
 import sqlite3
 from datetime import datetime
-import gpxpy
-import gpxpy.gpx
+# import gpxpy
+# import gpxpy.gpx
 
-
-conn = sqlite3.connect('D:/Usuario/Escritorio/PamGuard/2020_Array_SQlite_Database _Antarctica.sqlite3')
+conn = sqlite3.connect('E:/Antartida 2020/PamGuard/2020_Array_SQlite_Database _Antarctica.sqlite3')
 cur = conn.cursor()
 # data = cur.execute("SELECT Sighting_No,Sighting_Time_GMT__,Visual_Species,Min_Group_Size,Max_Group_Size,Best_Group_Size,Distance,Distance_Units,Angle_Board,Detector FROM Sightings")
 data = cur.execute("SELECT Sighting_No, Sighting_Time_GMT__, Visual_Species, Sighting_effort FROM Sightings WHERE Sighting_effort LIKE 'ON%' ORDER BY Sighting_Time_GMT__ ASC")
 time_diff = []
 results = data.fetchall()
 lista = []
-n = 0
 
 for row in results:
-	n += 1
 	sight_time = row[1] # take date and time
 	sight_time_str = sight_time[:16] # take HH:MM for query filtering reference
 	sight_time_dt = datetime.strptime(sight_time, '%Y-%m-%d %H:%M:%S.%f') # convert to datetime format for operations
@@ -33,10 +30,8 @@ for row in results:
 	else: 
 		row_full = row + (None,None,None)
 		lista.append(row_full)
-	if n > 30:
-		break
 
-with open('D:/Usuario/Escritorio/PamGuard/query_output.csv', 'w') as f:
+with open('D:/Usuario/Documentos/Cethus/antartida/Campaña-2020/python-sqlite3-queries-antarctica/query_output.csv', 'w', newline='') as f:
 	writer = csv.writer(f)
 	writer.writerow(['Sighting_No', 'Time', 'Species', 'Effort', 'GpsDate', 'Latitude', 'Logitude'])
 	writer.writerows(lista)
